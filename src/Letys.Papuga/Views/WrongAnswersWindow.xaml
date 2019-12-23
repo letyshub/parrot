@@ -1,0 +1,29 @@
+﻿<Window x:Class="Letys.Parrot.Views.WrongAnswersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        Title="Pytania do powtórki" Height="500" Width="540"
+        WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" ResizeMode="NoResize" FontFamily="Verdana">
+    <StackPanel Style="{StaticResource panelStyle}" Orientation="Vertical">
+        <Label Content="Oto pytania, na które nie znałeś odpowiedzi:" Style="{StaticResource labelNameStyle}" />
+        <ListView x:Name="lvwItems"
+                  ScrollViewer.CanContentScroll="True"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  Height="400"
+                  ItemContainerStyle="{StaticResource alternatingStyle}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Answer}" Style="{StaticResource answerTextBlockStyle}" />
+                        <TextBlock Text="{Binding Question}" Style="{StaticResource questionTextBlockStyle}" />
+                        <TextBlock Text="{Binding Example}" Style="{StaticResource exampleTextBlockStyle}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Liczba pytań: " Style="{StaticResource labelNameStyle}" />
+            <Label x:Name="lblQuestionQuantity" Style="{StaticResource labelContentStyle}" />
+        </StackPanel>
+    </StackPanel>
+</Window>

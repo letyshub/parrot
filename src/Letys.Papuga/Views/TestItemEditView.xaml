@@ -1,0 +1,40 @@
+﻿<Window x:Class="Letys.Parrot.Views.TestItemEditView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        Title="Szczegóły pytania"
+        Height="320"
+        Width="500"
+        WindowStyle="ToolWindow"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        FontFamily="Verdana">
+    <Grid Background="#DFE2E2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90" />
+            <ColumnDefinition Width="44" />
+            <ColumnDefinition Width="357"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Pytanie: " Style="{StaticResource labelNameStyle}" />
+        <TextBox x:Name="txtQuestion" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource textboxStyle}" LostFocus="txtQuestion_LostFocus" />
+        <Label Content="Odpowiedź: " Grid.Row="1" Style="{StaticResource labelNameStyle}" />
+        <TextBox x:Name="txtAnswer" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource textboxStyle}" LostFocus="txtAnswer_LostFocus" />
+        <Label Content="Przykład: " Grid.Row="2" Style="{StaticResource labelNameStyle}" />
+        <TextBox x:Name="txtExample" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource textboxStyle}" />
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="2">
+            <Button x:Name="btnAccept" Style="{StaticResource buttonStyle}" Click="btnAccept_Click" ToolTip="Akceptuj wprowadzone zmiany">
+                <fa:ImageAwesome Icon="CheckCircle" Style="{StaticResource imageButtonStyle}" />
+            </Button>
+            <Button x:Name="btnCancel" Style="{StaticResource buttonStyle}" Click="btnCancel_Click" ToolTip="Anuluj wprowadzone zmiany">
+                <fa:ImageAwesome Icon="TimesCircle" Style="{StaticResource imageButtonStyle}" />
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

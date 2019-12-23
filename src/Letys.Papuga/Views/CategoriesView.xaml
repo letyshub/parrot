@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="Letys.Parrot.Views.CategoriesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             Height="620" Width="720">
+    <StackPanel Style="{StaticResource panelStyle}">
+        <StackPanel Style="{StaticResource navigationHeaderStyle}">
+            <Label Content="Kategorie testów" Style="{StaticResource labelNavigationHeaderStyle}" />
+        </StackPanel>
+        <StackPanel Style="{StaticResource navigationHeaderStyle}">
+            <Button Command="{Binding AddCategory}" Style="{StaticResource buttonStyle}" ToolTip="Dodaj kategorię">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Icon="PlusSquareOutline" Style="{StaticResource imageButtonStyle}" />
+                    <Label Content="Nowa kategoria" Style="{StaticResource buttonLabelStyle}" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <ListView ItemsSource="{Binding Categories}"
+                  ItemContainerStyle="{StaticResource alternatingStyle}"
+                  Style="{StaticResource listViewStyle}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Label Content="{Binding Name}" Style="{StaticResource titleLabelStyle}" />
+                        <Label Content="{Binding Description}" Foreground="#574B7B" />
+                        <StackPanel Orientation="Horizontal">
+                            <Button Command="{Binding DataContext.EditCategory, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}"
+                                    CommandParameter="{Binding}"
+                                    Style="{StaticResource buttonListStyle}"
+                                    ToolTip="Edytuj wybraną kategorię"
+                                    Background="{Binding Path=Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Control}}}">
+                                <fa:ImageAwesome Icon="Edit" Style="{StaticResource imageButtonListStyle}" />
+                            </Button>
+                            <Button Command="{Binding DataContext.DeleteCategory, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}"
+                                    CommandParameter="{Binding}"
+                                    Style="{StaticResource buttonListStyle}"
+                                    ToolTip="Usuń wybraną kategorię"
+                                    Background="{Binding Path=Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Control}}}">
+                                <fa:ImageAwesome Icon="TrashOutline" Style="{StaticResource imageButtonListStyle}" />
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackPanel>
+</UserControl>

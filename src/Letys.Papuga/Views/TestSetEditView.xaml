@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="Letys.Parrot.Views.TestSetEditView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:Letys.Parrot.Converters"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             Height="620" Width="720">
+    <StackPanel Style="{StaticResource panelStyle}">
+        <StackPanel Style="{StaticResource navigationHeaderStyle}">
+            <Button Command="{Binding PreviousCommand}" Style="{StaticResource buttonStyle}" ToolTip="Back">
+                <fa:ImageAwesome Icon="ArrowCircleLeft"  Style="{StaticResource imageButtonStyle}" />
+            </Button>
+            <Label Content="Szczegóły testu" Style="{StaticResource labelNavigationHeaderStyle}" />
+        </StackPanel>
+        <StackPanel Style="{StaticResource navigationHeaderStyle}">
+            <Button Command="{Binding Save}" Style="{StaticResource buttonStyle}" ToolTip="Zapisz test.">
+                <fa:ImageAwesome Icon="Save"  Style="{StaticResource imageButtonStyle}" />
+            </Button>
+            <Button Command="{Binding Cancel}" Style="{StaticResource buttonStyle}" ToolTip="Anuluj wprowadzone zmiany.">
+                <fa:ImageAwesome Icon="TimesCircle" Style="{StaticResource imageButtonStyle}" />
+            </Button>
+        </StackPanel>
+        <TabControl Height="519" Background="White">
+            <TabItem Header="Parametry">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="36" />
+                        <RowDefinition Height="80" />
+                        <RowDefinition Height="36" />
+                        <RowDefinition Height="36" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="89*" />
+                        <ColumnDefinition Width="621*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Nazwa:" Style="{StaticResource labelNameStyle}" />
+                    <TextBox Text="{Binding TestName}" Grid.Column="1" Style="{StaticResource textboxStyle}" />
+                    <Label Content="Opis:" Grid.Row="1" Style="{StaticResource labelNameStyle}" />
+                    <TextBox Text="{Binding TestDescription}" Grid.Column="1" Grid.Row="1" Style="{StaticResource textboxStyle}" />
+                    <Label Content="Kategoria:" Grid.Row="2" Style="{StaticResource labelNameStyle}" />
+                    <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}"
+                              DisplayMemberPath="Name" Grid.Row="2" Grid.Column="1"  Margin="0,3,0,3" Foreground="#25545C" />
+                    <Label Content="Język:" Grid.Row="3" Style="{StaticResource labelNameStyle}" />
+                    <ComboBox SelectedItem="{Binding SelectedLanguage}" ItemsSource="{Binding Languages}" Grid.Row="3" Grid.Column="1"
+                               Margin="0,3,0,3" Foreground="#25545C" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Pytania">
+                <StackPanel Margin="0,0,0,-19">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Ilość pytań:" Style="{StaticResource labelNameStyle}" />
+                        <Label Content="{Binding QuestionQuantity}" Style="{StaticResource labelContentStyle}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Command="{Binding QuestionAdd}" Margin="0,4" ToolTip="Dodaj pytanie" Background="#F1F2F2">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:ImageAwesome Icon="PlusCircle" Style="{StaticResource imageButtonStyle}" Foreground="Black" />
+                                <Label Content="Dodaj pytanie" FontWeight="Bold" />
+                            </StackPanel>
+                        </Button>
+                        <Button Command="{Binding ImportCommand}" Margin="4,4" ToolTip="Dodaj pytanie" Background="#F1F2F2">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:ImageAwesome Icon="Upload" Style="{StaticResource imageButtonStyle}" Foreground="Black" />
+                                <Label Content="Importuj pytania" FontWeight="Bold" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                    <ListView ItemsSource="{Binding Questions}" SelectedItem="{Binding SelectedQuestion}" Height="428" Width="714"
+                              ItemContainerStyle="{StaticResource alternatingStyle}" Style="{StaticResource listViewStyle}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Answer}" Style="{StaticResource answerTextBlockStyle}" Background="{Binding Path=Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Control}}}" />
+                                    <TextBlock Text="{Binding Question}" Style="{StaticResource questionTextBlockStyle}" Background="{Binding Path=Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Control}}}" />
+                                    <TextBlock Text="{Binding Example}" Style="{StaticResource exampleTextBlockStyle}" Width="670" Background="{Binding Path=Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Control}}}" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Command="{Binding DataContext.QuestionEdit, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}"
+                                                CommandParameter="{Binding}"
+                                                IsEnabled="{Binding QuestionEditDeleteEnabled}"
+                                                Margin="4,4,0,4"
+                                                ToolTip="Edytuj wybrane pytanie"
+                                                Background="{Binding Path=Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Control}}}">
+                                            <fa:ImageAwesome Icon="Edit" Style="{StaticResource imageButtonListStyle}" />
+                                        </Button>
+                                        <Button Command="{Binding DataContext.QuestionDelete, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}"
+                                                CommandParameter="{Binding}"
+                                                IsEnabled="{Binding QuestionEditDeleteEnabled}"
+                                                Margin="4,4,0,4"
+                                                ToolTip="Usuń wybrane pytanie"
+                                                Background="{Binding Path=Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Control}}}">
+                                            <fa:ImageAwesome Icon="Trash" Style="{StaticResource imageButtonListStyle}" />
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </StackPanel>
+</UserControl>

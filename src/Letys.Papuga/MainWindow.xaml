@@ -1,0 +1,29 @@
+﻿<Window x:Class="Letys.Parrot.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        Title="Papuga - powtarzaj jak Papuga i ucz się słówek" Height="680" Width="800"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Verdana" ResizeMode="CanMinimize">
+    <DockPanel LastChildFill="True" Margin="0" Background="#FFFFFF">
+        <StackPanel DockPanel.Dock="Left" Width="56" Background="#2D3033">
+            <Button x:Name="btnExit" Command="{Binding Exit}" Height="45" Width="45" Margin="3" Background="#2D3033" ToolTip="Zamknij program">
+                <fa:ImageAwesome Icon="WindowCloseOutline" VerticalAlignment="Center" HorizontalAlignment="Center" Height="32" Width="32" Margin="3" Foreground="#FFFF1744" />
+            </Button>
+            <Button Command="{Binding DisplayTests}" Height="45" Width="45" Margin="4,0,4,4" Background="#2D3033" ToolTip="Zarządzanie testami">
+                <fa:ImageAwesome Icon="FileText" VerticalAlignment="Center" HorizontalAlignment="Center" Height="32" Width="32" Margin="3" Foreground="#F9F9F9" />
+            </Button>
+            <Button Command="{Binding DisplayCategories}" Height="45" Width="45" Margin="4,0,4,4" Background="#2D3033" ToolTip="Zarządzanie kategoriami testów">
+                <fa:ImageAwesome Icon="Tags" VerticalAlignment="Center" HorizontalAlignment="Center" Height="32" Width="32" Margin="3" Foreground="#F9F9F9" />
+            </Button>
+            <Button Command="{Binding DisplayScores}" Height="45" Width="45" Background="#2D3033" ToolTip="Historia osiągniętych rezultatów">
+                <fa:ImageAwesome Icon="Calendar" VerticalAlignment="Center" HorizontalAlignment="Center" Height="32" Width="32" Margin="3" Foreground="#F9F9F9" />
+            </Button>
+        </StackPanel>
+        <ContentControl Content="{Binding CurrentViewModel}"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Stretch"
+                        DockPanel.Dock="Left"
+                        Background="#DFE2E2" />
+    </DockPanel>
+</Window>

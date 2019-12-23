@@ -1,0 +1,24 @@
+﻿<Window x:Class="Letys.Parrot.Views.ErrorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        Title="Błąd w aplikacji" Height="130" Width="389" WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Background="#DFE2E2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="38" />
+            <RowDefinition Height="48" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="57*" />
+            <ColumnDefinition Width="235*" />
+        </Grid.ColumnDefinitions>
+        <fa:ImageAwesome Icon="Warning" VerticalAlignment="Center" HorizontalAlignment="Center" Height="32" Width="32" Margin="3" />
+        <TextBlock Text="Niestety wystąpił błąd w działaniu aplikacji i zostanie ona zamknięta." Grid.Column="1" FontWeight="Bold" 
+                   Foreground="#1A7E58" FontFamily="Verdana" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Margin="0,0,3,0" />
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Margin="0,3,3,3" Click="Button_Click">
+                <fa:ImageAwesome Icon="TimesCircle" Style="{StaticResource imageButtonStyle}" />
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

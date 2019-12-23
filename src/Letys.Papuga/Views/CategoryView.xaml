@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Letys.Parrot.Views.CategoryView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        Height="620"
+        Width="720">
+    <StackPanel Style="{StaticResource panelStyle}">
+        <StackPanel Style="{StaticResource navigationHeaderStyle}" Grid.Row="0" Grid.ColumnSpan="2">
+            <Button Command="{Binding PreviousCommand}"  Style="{StaticResource buttonStyle}" ToolTip="Back">
+                <fa:ImageAwesome Icon="ArrowCircleLeft" Style="{StaticResource imageButtonStyle}" />
+            </Button>
+            <Label Content="Szczegóły kategorii" Style="{StaticResource labelNavigationHeaderStyle}" />
+        </StackPanel>
+        <StackPanel  Style="{StaticResource navigationHeaderStyle}" Grid.Row="1">
+            <Button Command="{Binding SaveCommand}" Style="{StaticResource buttonStyle}" ToolTip="Zapisz kategorię.">
+                <fa:ImageAwesome Icon="Save"  Style="{StaticResource imageButtonStyle}" />
+            </Button>
+            <Button Command="{Binding CancelCommand}" Style="{StaticResource buttonStyle}" ToolTip="Anuluj wprowadzone zmiany.">
+                <fa:ImageAwesome Icon="TimesCircle" Style="{StaticResource imageButtonStyle}" />
+            </Button>
+        </StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="38" />
+                <RowDefinition Height="200" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="16.802" />
+                <ColumnDefinition Width="153.198"/>
+                <ColumnDefinition Width="550" />
+            </Grid.ColumnDefinitions>
+            <Label Content="Nazwa kategorii:"
+                   Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   Style="{StaticResource labelNameStyle}" />
+            <TextBox Text="{Binding Category.Name}"
+                     Grid.Row="0"
+                     Grid.Column="2"
+                     Style="{StaticResource textboxStyle}" />
+            <Label Content="Opis kategorii:"
+                   Grid.Row="1"
+                   Grid.ColumnSpan="2"
+                   Style="{StaticResource labelNameStyle}" />
+            <TextBox Text="{Binding Category.Description}"
+                     Grid.Row="1"
+                     Grid.Column="2"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"
+                     Style="{StaticResource textboxStyle}" />
+        </Grid>
+    </StackPanel>
+</UserControl>
